@@ -11,7 +11,7 @@ final class Statement extends \Doctrine\DBAL\Driver\PDO\Statement
 
     private ?string $charsetToEncoding = null;
 
-    public function bindParam($param, &$variable, $type = ParameterType::STRING, $length = null, $driverOptions = null)
+    public function bindParam($param, &$variable, $type = ParameterType::STRING, $length = null, $driverOptions = null): bool
     {
         switch ($type) {
             case ParameterType::LARGE_OBJECT:
@@ -31,7 +31,7 @@ final class Statement extends \Doctrine\DBAL\Driver\PDO\Statement
 
         return parent::bindParam($param, $variable, $type, $length, $driverOptions);
     }
-
+   
     public function setCharsetToEncoding(?string $charset): void
     {
         $this->charsetToEncoding = $charset;

@@ -38,7 +38,7 @@ final class Connection extends PDO implements ConnectionInterface, ServerInfoAwa
     /**
      * {@inheritdoc}
      */
-    public function quote($value, $type = ParameterType::STRING)
+    public function quote(string $value, int $type = PDO::PARAM_STR): string|false
     {
         $val = parent::quote($value, $type);
 
@@ -49,7 +49,6 @@ final class Connection extends PDO implements ConnectionInterface, ServerInfoAwa
 
         return $val;
     }
-
     /**
      * {@inheritdoc}
      */
@@ -100,7 +99,7 @@ final class Connection extends PDO implements ConnectionInterface, ServerInfoAwa
     /**
      * {@inheritdoc}
      */
-    public function prepare($statement, $options = null)
+    public function prepare(string $statement, array $options = []): PDOStatement|false
     {
         if (null === $options) {
             $options = [];
@@ -113,6 +112,7 @@ final class Connection extends PDO implements ConnectionInterface, ServerInfoAwa
 
         return $statement;
     }
+
 
     private function transactionsSupported(): bool
     {

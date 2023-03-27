@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace ZoiloMora\Doctrine\DBAL\Driver\MicrosoftAccess;
 
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Driver\API\ExceptionConverter;
 use Doctrine\DBAL\Exception;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Schema\AbstractSchemaManager;
@@ -57,7 +58,7 @@ final class Driver implements \Doctrine\DBAL\Driver
         return new MicrosoftAccessPlatform();
     }
 
-    public function getSchemaManager(Connection $conn): AbstractSchemaManager
+    public function getSchemaManager(Connection $conn, AbstractPlatform $platform): AbstractSchemaManager
     {
         return new MicrosoftAccessSchemaManager($conn, $this->odbcConnection);
     }
@@ -82,5 +83,10 @@ final class Driver implements \Doctrine\DBAL\Driver
     private function getDsn(array $driverOptions): string
     {
         return $driverOptions['dsn'];
+    }
+
+    public function getExceptionConverter(): ExceptionConverter
+    {
+        return new ExceptionConverter();
     }
 }
