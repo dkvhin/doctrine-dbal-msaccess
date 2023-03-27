@@ -1,6 +1,6 @@
 {
-    "name": "zoilomora/doctrine-dbal-msaccess",
-    "description": "Doctrine DBAL implementation for Microsoft Access",
+    "name": "dkvhin/doctrine-dbal-msaccess",
+    "description": "Doctrine DBAL implementation for Microsoft Access; Fork from zoilomora/doctrine-dbal-msaccess",
     "type": "library",
     "license": "MIT",
     "require": {
